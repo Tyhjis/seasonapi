@@ -1,0 +1,61 @@
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+
+* {
+  box-sizing: border-box;
+}
+
+@mixin border-mixin($radius) {
+  border: solid thin grey;
+  border-radius: $radius;
+}
+
+@mixin tablet($width) {
+  @media #{$tablet} {
+    width: $width;
+  }
+}
+
+@mixin column($space) {
+  float: left;
+  padding: 15px;
+  @media #{$desktop} {
+    width: 100;
+  }
+  @if $space == 1 {
+    @include tablet(8.33%);
+  }
+  @if $space == 2 {
+    @include tablet(16.66%);
+  }
+  @if $space == 3 {
+    @include tablet(25%);
+  }
+  @if $space == 4 {
+    @include tablet(33.33%);
+  }
+  @if $space == 5 {
+    @include tablet(41.66%);
+  }
+  @if $space == 6 {
+    @include tablet(50%);
+  }
+  @if $space == 7 {
+    @include tablet(58.33%);
+  }
+  @if $space == 8 {
+    @include tablet(66.66%);
+  }
+  @if $space == 9 {
+    @include tablet(75%);
+  }
+  @if $space == 10 {
+    @include tablet(83.33%);
+  }
+  @if $space == 11 {
+    @include tablet(91.66%);
+  }
+  @if $space == 12 {
+    @include tablet(100%);
+  }
+}
