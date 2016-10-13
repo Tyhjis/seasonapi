@@ -13,6 +13,22 @@ function getVegetables(req, res, next) {
     });
 }
 
+function getVegetablesBySeason(req, res, next) {
+  models.season.findOne({
+    where: {
+      name: req.query.s
+    },
+    include: {
+      all: true
+    }
+  })
+    .then(function(season) {
+      res.json(season);
+    }).catch(function(error) {
+      res.status(500).json(error);
+    });
+}
+
 function getVegetable(req, res, next) {
   models.vegetable.findById(req.params.id, {
     include: [
@@ -44,3 +60,4 @@ function postVegetable(req, res, next) {
 module.exports.getVegetable = getVegetable;
 module.exports.getVegetables = getVegetables;
 module.exports.postVegetable = postVegetable;
+module.exports.getVegetablesBySeason = getVegetablesBySeason;
