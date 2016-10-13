@@ -7,7 +7,7 @@ for(var key in seed.seasons) {
 }
 models.season.bulkCreate(seasons)
   .then(function() {
-    console.log("Veggies created");
+    console.log("Seasons created");
   }).catch(function(error) {
     console.log(error);
   });
