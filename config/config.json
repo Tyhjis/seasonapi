@@ -10,8 +10,6 @@
     "storage": "./db/seasonapi.db"
   },
   "production": {
-    "protocol": null,
-    "host": "postgresql-sinuous-49855",
-    "dialect": "postgres"
+    "use_env_variable": "DATABASE_URL"
   }
 }
