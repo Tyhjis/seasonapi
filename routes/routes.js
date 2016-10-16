@@ -2,6 +2,7 @@ var router = require('express').Router();
 
 var SeasonController = require('../controllers/SeasonController.js');
 var VegetableController = require('../controllers/VegetableController.js');
+var RecipeController = require('../controllers/RecipeController.js');
 
 // Static html files
 router.get('/', index);
@@ -21,6 +22,9 @@ router.get('/api/vegetables/byseason', VegetableController.getVegetablesBySeason
 router.get('/api/vegetables/:id', VegetableController.getVegetable);
 router.post('/api/vegetables', VegetableController.postVegetable);
 
+router.get('/api/recipes', RecipeController.getRecipes);
+router.get('/api/recipes/:id', RecipeController.getRecipe);
+router.post('/api/recipes', RecipeController.postRecipe);
 
 function index(req, res, next) {
   return res.sendFile('index.html');

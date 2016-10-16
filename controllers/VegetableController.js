@@ -23,9 +23,12 @@ function getVegetablesBySeason(req, res, next) {
     }
   })
     .then(function(season) {
-      res.json(season);
+      if(season == null){
+        return res.status(404).json({error: 'Not found.'});
+      }
+      return res.json(season);
     }).catch(function(error) {
-      res.status(500).json(error);
+      return res.status(500).json(error);
     });
 }
 
@@ -35,14 +38,14 @@ function getVegetable(req, res, next) {
       { all: true }
     ]
   }).then(function(vegetable) {
-    res.json(vegetable);
+    return res.json(vegetable);
   }).catch(function(error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   });
 }
 
 function postVegetable(req, res, next) {
-  models.vegetable.create(req.body)
+  models.vegetable.create(filterPostBody(req.body))
     .then(function() {
       models.vegetable.findAll()
         .then(function(vegetables) {
@@ -55,6 +58,13 @@ function postVegetable(req, res, next) {
     .catch(function(error) {
       return res.status(500).json(error);
     });
+}
+
+function filterPostBody(body) {
+  if(body.name == null) {
+    return null;
+  }
+  return {name: body.name};
 }
 
 module.exports.getVegetable = getVegetable;

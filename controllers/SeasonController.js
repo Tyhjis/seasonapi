@@ -35,7 +35,7 @@ function getSeason(req, res, next) {
       { all: true }
     ]
   }).then(function(season) {
-      res.json(season);
+      return res.json(season);
     })
     .catch(function(error) {
       return res.status(500).json(error);
