@@ -19,7 +19,8 @@ router.post('/api/seasons/:id/:veg_id', SeasonController.addVegToSeason);
 // api/vegetables
 router.get('/api/vegetables', VegetableController.getVegetables);
 router.get('/api/vegetables/byseason', VegetableController.getVegetablesBySeason);
-router.get('/api/vegetables/:id', VegetableController.getVegetable);
+router.get('/api/vegetables/:id/', VegetableController.getVegetable);
+router.get('/api/vegetables/:id/recipes', VegetableController.getVegetableRecipes);
 router.post('/api/vegetables', VegetableController.postVegetable);
 
 router.get('/api/recipes', RecipeController.getRecipes);

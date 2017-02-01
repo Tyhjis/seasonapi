@@ -44,6 +44,20 @@ function getVegetable(req, res, next) {
   });
 }
 
+function getVegetableRecipes(req, res, next) {
+  models.vegetable.findById(req.params.id)
+    .then(function(vegetable) {
+      vegetable.getRecipes()
+        .then(function(recipes) {
+          return res.json(recipes);
+        }).catch(function(error) {
+          return res.status(500).json(error);
+        });
+    }).catch(function(error) {
+      return res.status(500).json(error);
+    });
+}
+
 function postVegetable(req, res, next) {
   models.vegetable.create(filterPostBody(req.body))
     .then(function() {
@@ -71,3 +85,4 @@ module.exports.getVegetable = getVegetable;
 module.exports.getVegetables = getVegetables;
 module.exports.postVegetable = postVegetable;
 module.exports.getVegetablesBySeason = getVegetablesBySeason;
+module.exports.getVegetableRecipes = getVegetableRecipes;
